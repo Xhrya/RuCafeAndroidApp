@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#dcedc1"
     tools:context=".MainActivity">
 
     <TextView
@@ -23,7 +24,10 @@
         android:layout_width="175dp"
         android:layout_height="72dp"
         android:layout_marginBottom="13dp"
+        android:background="#ff8b94 "
+        android:backgroundTint="#ff8b94 "
         android:text="Order Coffee"
+        android:onClick="ordersCoffee"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/button3"
         app:layout_constraintStart_toStartOf="@+id/button3" />
@@ -57,6 +61,7 @@
         android:layout_height="75dp"
         android:layout_marginTop="247dp"
         android:text="Order Donuts"
+        android:onClick="ordersDonut"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
