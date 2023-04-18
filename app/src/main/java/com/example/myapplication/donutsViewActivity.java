@@ -9,22 +9,21 @@ import android.view.View;
 public class donutsViewActivity extends AppCompatActivity {
 
     Intent intent = getIntent();
-    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donuts_view);
-        button = findViewById(R.id.btnOpenMain);
-        button.setOnClickListener(new View.onClickListener());
-        {
-            @Override
-            public void onClick (View v)
-            {
-                Intent i = new Intent(this, MainActivity.class);
-                startActivity(i);
-            }
-        }
+//        button = findViewById(R.id.btnOpenMain);
+//        button.setOnClickListener(new View.onClickListener());
+//        {
+//            @Override
+//            public void onClick (View v)
+//            {
+//                Intent i = new Intent(this, MainActivity.class);
+//                startActivity(i);
+//            }
+//        }
     }
 
 }

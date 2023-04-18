@@ -4,8 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#dcedc1"
+    android:background="#A8E6CE"
     tools:context=".MainActivity">
+
+
 
     <TextView
         android:id="@+id/textView"
@@ -20,31 +22,31 @@
         app:layout_constraintVertical_bias="0.063" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/orderCoffeeButton"
         android:layout_width="175dp"
         android:layout_height="72dp"
         android:layout_marginBottom="13dp"
-        android:background="#ff8b94 "
-        android:backgroundTint="#ff8b94 "
+        android:backgroundTint="#6C5B7B"
+
         android:text="Order Coffee"
         android:onClick="ordersCoffee"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
-        app:layout_constraintStart_toStartOf="@+id/button3" />
+        app:layout_constraintBottom_toTopOf="@+id/orderDonutsButton"
+        app:layout_constraintStart_toStartOf="@+id/orderDonutsButton" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/myOrderButton"
         android:layout_width="172dp"
         android:layout_height="70dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="52dp"
         android:text="My Order"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/button3"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintStart_toStartOf="@+id/orderDonutsButton"
+        app:layout_constraintTop_toBottomOf="@+id/orderDonutsButton" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/storeOrdersButton"
         android:layout_width="165dp"
         android:layout_height="71dp"
         android:layout_marginBottom="180dp"
@@ -56,7 +58,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/orderDonutsButton"
         android:layout_width="173dp"
         android:layout_height="75dp"
         android:layout_marginTop="247dp"
