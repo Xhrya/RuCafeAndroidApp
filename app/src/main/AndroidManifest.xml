@@ -14,9 +14,19 @@
         <activity
             android:name=".coffeeViewActivity"
             android:exported="false" />
+
         <activity
             android:name=".donutsViewActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".basketActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".storeOrderActivity"
+            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

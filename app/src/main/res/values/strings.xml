@@ -19,5 +19,33 @@
 
     </string-array>
 
+    <string-array name="donutFlavors">
+        <item>Birthday cake Donut</item>
+        <item>Chocolate cake Donut</item>
+        <item>Vanilla cake Donut</item>
+
+        <item>Vanilla donut holes</item>
+        <item>Chocolate donut holes</item>
+        <item>Strawberry donut holes</item>
+
+        <item>Vanilla donut</item>
+        <item>Chocolate donut</item>
+        <item>Strawberry donut</item>
+        <item>Lemon donut</item>
+        <item>Lavender donut</item>
+        <item>Pumpkin donut</item>
+
+    </string-array>
+
+<!--    <String-array name="quantityDonuts">-->
+<!--        <item>1</item>-->
+<!--        <item>2</item>-->
+<!--        <item>3</item>-->
+<!--        <item>4</item>-->
+<!--        <item>5</item>-->
+<!--    </String-array>-->
+
+<!--    just used quanitty for donuts as well as coffee-->
+
 
 </resources>
