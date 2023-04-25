@@ -13,6 +13,12 @@ public class Item {
         this.image = i;
     }
 
+    public Item(String t, String df)
+    {
+        this.donutType=t;
+        this.donutFlavor=df;
+    }
+
     public String getType()
     {
         return donutType;
