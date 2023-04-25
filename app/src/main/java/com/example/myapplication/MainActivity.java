@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         donutsView = (Button) findViewById(R.id.orderDonutsButton);
         coffeeView = (Button) findViewById(R.id.orderCoffeeButton);
         storeOrderView = (Button) findViewById(R.id.orderDonutsButton);
-        basketView = (Button) findViewById(R.id.orderDonutsButton);
+        basketView = (Button) findViewById(R.id.myOrderButton);
 
 
 
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         {
             @Override
             public void onClick(View view2) {
-                Toast.makeText(MainActivity.this, "Welcome to ordering donuts! inside", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Welcome to ordering donuts!", Toast.LENGTH_SHORT).show();
                 Intent intentDonuts = new Intent(MainActivity.this, donutsViewActivity.class);
                 startActivity(intentDonuts);
             }
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Welcome to ordering coffee! inside", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Welcome to ordering coffee!", Toast.LENGTH_SHORT).show();
                 Intent intentCoffee = new Intent(MainActivity.this, coffeeViewActivity.class);
                 startActivity(intentCoffee);
             }
@@ -64,16 +65,16 @@ public class MainActivity extends AppCompatActivity {
 //
 //        });
 
-//        basketView.setOnClickListener(new View.OnClickListener()
-//        {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(MainActivity.this, "Welcome to your basket!", Toast.LENGTH_SHORT).show();
-//                Intent intentBasketView = new Intent(MainActivity.this, basketActivity.class);
-//                startActivity(intentBasketView);
-//            }
-//
-//        });
+        basketView.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "Welcome to your basket!", Toast.LENGTH_SHORT).show();
+                Intent intentBasketView = new Intent(MainActivity.this, basketActivity.class);
+                startActivity(intentBasketView);
+            }
+
+        });
      }
 
 

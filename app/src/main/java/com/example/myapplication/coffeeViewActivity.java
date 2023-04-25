@@ -26,7 +26,6 @@ public class coffeeViewActivity extends AppCompatActivity {
     CheckBox isCaramel;
     CheckBox isIC;
     TextView temp;
-    Spinner spinner;
     private String [] quantityVal = {"1", "2", "3", "4", "5"};
     private ArrayAdapter<String> adapter;
 
@@ -49,7 +48,7 @@ public class coffeeViewActivity extends AppCompatActivity {
         isCaramel = findViewById(R.id.caramelBox);
         isIC = findViewById(R.id.ICBox);
 
-        //THIS CREATES THE FINAL DONUT OBJECT
+        //THIS CREATES THE FINAL COFFEE OBJECT
         orderCoffee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,10 +86,19 @@ public class coffeeViewActivity extends AppCompatActivity {
                     Coffee newCoffee = new Coffee(size, addIns, price);
                 }
 
-//                Toast.makeText(coffeeViewActivity.this, "SWWWWEEET!" + size, Toast.LENGTH_SHORT).show();
+                //SERALIZE RIGHT HERE
+
+
                 Toast.makeText(coffeeViewActivity.this, "Your order has been placed!", Toast.LENGTH_SHORT).show();
             }
         });
+
+
+
+
+
+
+
 
 //        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() { //event handler below
 //            @Override
@@ -104,10 +112,33 @@ public class coffeeViewActivity extends AppCompatActivity {
 //            }
 //        });
 
+
+        //-------------------------------------------------------------
+//        Spinner quantitySelection = findViewById(R.id.spinner);
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.quantities, android.R.layout.simple_spinner_item);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        quantitySelection.setAdapter(adapter);
+//        quantitySelection.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
+//        MyAdapter myAdapter = new MyAdapter(this, (getResources().getStringArray(R.array.quantities)));
+
+
+//        @Override
+//        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+//            String text = adapterView.getItemAtPosition(i).toString();
+//            Toast.makeText(adapterView.getContext(), text, Toast.LENGTH_SHORT).show();
+//        }
+//
+//        @Override
+//        public void onNothingSelected(AdapterView<?> adapterView) {
+//
+//        }
+
+        //----------------------------------------------------------------
+
         //THESE HELP KEEP THE RUNNING TOTAL IN CHECK
-        sizeGroup.setOnClickListener(new View.OnClickListener() {
+        sizeGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 try{
                     int check = sizeGroup.getCheckedRadioButtonId();
                     orderCoffee = findViewById(check);
