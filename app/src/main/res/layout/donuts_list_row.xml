@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_margin="10dp"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/myImageView"
+        android:layout_width="95dp"
+        android:layout_height="107dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="9dp"
+
+        tools:srcCompat="@tools:sample/avatars" />
+
+
+    <TextView
+        android:id="@+id/types"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="183dp"
+        android:layout_marginBottom="54dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/flavors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="183dp"
+        android:layout_marginBottom="8dp"
+        android:text="Type" />
+
+
+</RelativeLayout>

@@ -18,28 +18,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="184dp"
-        android:layout_height="186dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="408dp"
-        android:src="@mipmap/ic_launcher_round"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="152dp"
-        android:layout_height="257dp"
-        android:layout_marginStart="31dp"
+        android:layout_width="351dp"
+        android:layout_height="249dp"
+        android:layout_marginStart="28dp"
         android:layout_marginTop="34dp"
-        android:layout_marginEnd="20dp"
         android:layout_marginBottom="380dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Spinner
         android:id="@+id/quantitySelection"
@@ -61,12 +50,54 @@
         android:layout_width="161dp"
         android:layout_height="45dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="63dp"
         android:layout_marginEnd="222dp"
-        android:layout_marginBottom="248dp"
+        android:layout_marginBottom="136dp"
         android:text="Add Donut"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subTotal" />
+
+    <TextView
+        android:id="@+id/donutPriceLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="26dp"
+        android:text="Price"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quantitySelection" />
+
+    <TextView
+        android:id="@+id/donutPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="26dp"
+        android:text="$"
+        app:layout_constraintStart_toEndOf="@+id/donutPriceLabel"
+        app:layout_constraintTop_toBottomOf="@+id/quantitySelection" />
+
+    <TextView
+        android:id="@+id/subTotalLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="7dp"
+        android:text="Subtotal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/donutPriceLabel" />
+
+    <TextView
+        android:id="@+id/subTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="8dp"
+        android:text="$"
+        app:layout_constraintStart_toEndOf="@+id/subTotalLabel"
+        app:layout_constraintTop_toBottomOf="@+id/donutPrice" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

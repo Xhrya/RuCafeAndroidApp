@@ -37,6 +37,21 @@
 
     </string-array>
 
+    <string-array name="donutTypes">
+        <item>Cake Donut</item>
+        <item>Cake Donut</item>
+        <item>Cake Donut</item>
+
+        <item>Donut Holes</item>
+        <item>Donut Holes</item>
+        <item>Donut Holes</item>
+
+        <item>Yeast Donuts</item>
+        <item>Yeast Donuts</item>
+        <item>Yeast Donuts</item>
+
+    </string-array>
+
 <!--    <String-array name="quantityDonuts">-->
 <!--        <item>1</item>-->
 <!--        <item>2</item>-->
