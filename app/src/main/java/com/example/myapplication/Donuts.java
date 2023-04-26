@@ -4,15 +4,37 @@
  */
 package com.example.myapplication;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class Donuts extends MenuItem {
+public class Donuts extends MenuItem implements Serializable {
 
 
     String donutType = "";
     String donutFlavor = "";
     double quantity =0;
+
+    int image;
+
+    private boolean isChecked = false;
+
+    public Donuts(String t, String df, int i)
+    {
+        this.donutType=t;
+        this.donutFlavor=df;
+        this.image = i;
+    }
+
+    public boolean isChecked()
+    {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked)
+    {
+        isChecked = checked;
+    }
 
 
     /**
@@ -27,6 +49,25 @@ public class Donuts extends MenuItem {
         this.quantity = quantity;
     }
 
+    public Donuts(String donutType, String donutFlavor){
+        this.donutType = donutType;
+        this.donutFlavor = donutFlavor;
+    }
+
+    public String getType()
+    {
+        return this.donutType;
+    }
+
+    public String getFlavor()
+    {
+        return this.donutFlavor;
+    }
+
+    public int getImage()
+    {
+        return this.image;
+    }
     /**
      * Returns the price of the donut based on its type
      */
@@ -47,6 +88,8 @@ public class Donuts extends MenuItem {
         }
         return 0;
     }
+
+
 
     /**
      * Returns the price of the donut based on its type and quantity

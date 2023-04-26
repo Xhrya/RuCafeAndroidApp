@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,10 +24,9 @@ import java.util.List;
 public class donutsViewActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     Intent intent = getIntent();
-    private int quanitity = 1;
+    private int quanitity;
 
-    private ArrayList<Donuts> donutList = new ArrayList<>();
-    private Donuts currentDonut;
+    ArrayList<Donuts> DonutsList = new ArrayList<>();
 
     Button orderDonut;
     Spinner quantitySelection;
@@ -34,12 +34,15 @@ public class donutsViewActivity extends AppCompatActivity implements AdapterView
 
 
     TextView particularDonutPrice;
+    Button addDonut;
     TextView subtotal;
+
+    SingleAdapter adapter;
 
     String flavors[], type[];
     int images[] = {R.drawable.cakedonuts, R.drawable.cakedonuts,R.drawable.cakedonuts, R.drawable.donutholes, R.drawable.donutholes, R.drawable.donutholes, R.drawable.food,  R.drawable.food,  R.drawable.food};
 
-    List<Item> DonutsView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,12 +60,6 @@ public class donutsViewActivity extends AppCompatActivity implements AdapterView
 //        }
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        List<Item> items = new ArrayList<Item>();
-        items.add(new Item("Donut Holes", "Stawberry", R.drawable.donutholes));
-        items.add(new Item("Donut Holes", "Chocolate", R.drawable.donutholes));
-        items.add(new Item("Donut Holes", "chocolate", R.drawable.donutholes));
-        items.add(new Item("Yeast Holes", "Stawberry", R.drawable.donutholes));
-        items.add(new Item("Yeast Holes", "Chocolate", R.drawable.donutholes));
 
 
         Spinner quantitySelection = findViewById(R.id.quantitySelection);
@@ -73,11 +70,49 @@ public class donutsViewActivity extends AppCompatActivity implements AdapterView
 
 
 
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new MyAdapter(getApplicationContext(), items));
+
+        adapter = new ArrayAdapter<CharSequence>(this, DonutsList);
+        recyclerView.setAdapter(adapter);
+
+        createList();
+        ArrayAdapter<CharSequence> finalAdapter = adapter;
+        addDonut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(finalAdapter.getSelected() != null)
+                {
+                    showToast(finalAdapter.getSelected().getName());
+                }
+                else {
+                    showToast("No Selected");
+                }
+            }
+        });
 
     }
+
+    public void createList()
+    {
+
+        ArrayList<Donuts> donutsArrayList = new ArrayList<Donuts>();
+        donutsArrayList.add(new Donuts("Donut Holes", "Strawberry", R.drawable.donutholes));
+        donutsArrayList.add(new Donuts("Donut Holes", "Mint", R.drawable.donutholes));
+        donutsArrayList.add(new Donuts("Yeast Holes", "Strawberry", R.drawable.food));
+        donutsArrayList.add(new Donuts("Yeast Holes", "Chocolate", R.drawable.food));
+        donutsArrayList.add(new Donuts("Yeast Holes", "Mint", R.drawable.food));
+        donutsArrayList.add(new Donuts("Cake Donuts", "Strawberry", R.drawable.food));
+        donutsArrayList.add(new Donuts("Cake Donuts", "Chocolate", R.drawable.food));
+        donutsArrayList.add(new Donuts("Cake Donuts", "Mint", R.drawable.food));
+
+    }
+
+    private void showToast(String msg)
+    {
+        Toast.makeText(this,msg, Toast.LENGTH_LONG).show();
+    }
+
+
 
 
 
@@ -92,31 +127,45 @@ public class donutsViewActivity extends AppCompatActivity implements AdapterView
 
     }
 
-    public void onAddDonut()
+
+
+    public void onAddDonutClick()
     {
         quanitity = quantitySelection.getId();
         onDisplayPrice();
-    }
 
-    public void onAddToBasket()
-    {
-       // donutsPriceTotal.setText("$" + displayTotalPrice());
+
+        double total = displayTotalPrice();
+        subtotal.setText("$" + String.format("%.2f",total));
+
 
     }
 
     public double displayTotalPrice()
     {
         double total =0;
-        for(int i =0; i<donutList.size(); i++)
+        for(int i =0; i<DonutsList.size(); i++)
         {
-            total+= donutList.get(i).donutPriceWithQuantity();
+            total+= DonutsList.get(i).donutPriceWithQuantity();
         }
 
         total = Double.parseDouble(String.format("%.2f", total));
-        return total;    }
+        return total;
+    }
+
+
+
+    public void onAddToBasketClick()
+    {
+       // donutsPriceTotal.setText("$" + displayTotalPrice());
+
+    }
+
+
 
     public void onDisplayPrice()
     {
+        //these donuts Price
         double price = 0;
 
 
@@ -124,7 +173,9 @@ public class donutsViewActivity extends AppCompatActivity implements AdapterView
         particularDonutPrice.setText("$" + String.format("%.2f",(price)));
 
 
-        subtotal.setText("$" + String.format("%.2f",(price * quantitySelection.getId())));
+        particularDonutPrice.setText("$" + String.format("%.2f",(price * quantitySelection.getId())));
+
+
 
     }
 }

@@ -50,6 +50,11 @@ public class Order {
         orderList.add(a);
     }
 
+    public void clear()
+    {
+        orderList.clear();
+    }
+
 
     /**
      * Adds coffee to orderlist
