@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import static com.example.myapplication.storeOrderActivity.currentStoreOrders;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -62,6 +64,9 @@ public class basketActivity extends AppCompatActivity {
         placeOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                currentOrder.setTotalPrice(displayPrices());
+                currentStoreOrders.add(currentOrder);
+                //empty the order here
                 Toast.makeText(basketActivity.this, "Your order has been placed!", Toast.LENGTH_SHORT).show();
             }
         });
@@ -76,7 +81,7 @@ public class basketActivity extends AppCompatActivity {
 
     }
 
-    protected void displayPrices(){
+    protected double displayPrices(){
         Double displayInitialPrice = 0.0;
         subTotal = findViewById(R.id.subtotalText);
         ArrayList<MenuItem> temp = currentOrder.getOrderList();
@@ -90,6 +95,8 @@ public class basketActivity extends AppCompatActivity {
 
         total = findViewById(R.id.totalText);
         total.setText(String.format("$%.2f",(displayInitialPrice*1.06625)));
+
+        return displayInitialPrice;
     }
 
 }
