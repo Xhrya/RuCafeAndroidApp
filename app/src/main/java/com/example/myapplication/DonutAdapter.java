@@ -9,16 +9,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DonutAdapter extends RecyclerView.Adapter<DonutAdapter.ViewHolder> {
-    private List<Donuts> donutsList;
+    private ArrayList<Donuts> donutsList;
     private OnDonutClickListener listener;
     private int selectedPosition = RecyclerView.NO_POSITION;
 
 
 
-    public DonutAdapter(List<Donuts> donutList, OnDonutClickListener listener) {
+    public DonutAdapter(ArrayList<Donuts> donutList, OnDonutClickListener listener) {
         donutsList = donutList;
         this.listener = listener;
     }

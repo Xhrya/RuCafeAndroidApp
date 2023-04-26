@@ -70,15 +70,7 @@ public class donutsViewActivity extends AppCompatActivity implements DonutAdapte
         quantitySelection.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
 
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        //adapter = new DonutAdapterA(donutList, this);
-         adapter = new ArrayAdapter<CharSequence>(donutList, this);
 
-
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        List<Donuts> donutList = new ArrayList<Donuts>();
         donutList.add(new Donuts("Donut Holes", "Strawberry", R.drawable.donutholes));
         donutList.add(new Donuts("Donut Holes", "Mint", R.drawable.donutholes));
         donutList.add(new Donuts("Yeast Holes", "Strawberry", R.drawable.food));
@@ -87,6 +79,12 @@ public class donutsViewActivity extends AppCompatActivity implements DonutAdapte
         donutList.add(new Donuts("Cake Donuts", "Strawberry", R.drawable.food));
         donutList.add(new Donuts("Cake Donuts", "Chocolate", R.drawable.food));
         donutList.add(new Donuts("Cake Donuts", "Mint", R.drawable.food));
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        //adapter = new DonutAdapterA(donutList, this);
+        adapter = new DonutAdapter(donutList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
 
 
 
