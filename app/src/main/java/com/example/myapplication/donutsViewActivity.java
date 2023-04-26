@@ -21,12 +21,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class donutsViewActivity extends AppCompatActivity implements DonutAdapter.onDonutClickListener {
+public class donutsViewActivity extends AppCompatActivity implements DonutAdapter.OnDonutClickListener {
 
     Intent intent = getIntent();
     private int quanitity;
+    ArrayList<Donuts> officialDonutsList;
 
-    ArrayList<Donuts> mSelectedDonuts = new ArrayList<>();
 
     Button orderDonut;
     Spinner quantitySelection;
@@ -38,6 +38,8 @@ public class donutsViewActivity extends AppCompatActivity implements DonutAdapte
     TextView subtotal;
 
     DonutAdapter adapter;
+    ArrayList<Donuts> donutList = new ArrayList<>();
+
 
     String flavors[], type[];
     int images[] = {R.drawable.cakedonuts, R.drawable.cakedonuts,R.drawable.cakedonuts, R.drawable.donutholes, R.drawable.donutholes, R.drawable.donutholes, R.drawable.food,  R.drawable.food,  R.drawable.food};
@@ -65,25 +67,28 @@ public class donutsViewActivity extends AppCompatActivity implements DonutAdapte
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.quantities, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         quantitySelection.setAdapter(adapter);
-        quantitySelection.setOnItemSelectedListener(this);
+        quantitySelection.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
 
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        List<Donuts> mDonuts = new ArrayList<Donuts>();
-        mDonuts.add(new Donuts("Donut Holes", "Strawberry", R.drawable.donutholes));
-        mDonuts.add(new Donuts("Donut Holes", "Mint", R.drawable.donutholes));
-        mDonuts.add(new Donuts("Yeast Holes", "Strawberry", R.drawable.food));
-        mDonuts.add(new Donuts("Yeast Holes", "Chocolate", R.drawable.food));
-        mDonuts.add(new Donuts("Yeast Holes", "Mint", R.drawable.food));
-        mDonuts.add(new Donuts("Cake Donuts", "Strawberry", R.drawable.food));
-        mDonuts.add(new Donuts("Cake Donuts", "Chocolate", R.drawable.food));
-        mDonuts.add(new Donuts("Cake Donuts", "Mint", R.drawable.food));
+        //adapter = new DonutAdapterA(donutList, this);
+         adapter = new ArrayAdapter<CharSequence>(donutList, this);
 
-         adapter = new DonutAdapter(mDonuts, this);
+
         recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mSelectedDonuts = new ArrayList<>();
+        List<Donuts> donutList = new ArrayList<Donuts>();
+        donutList.add(new Donuts("Donut Holes", "Strawberry", R.drawable.donutholes));
+        donutList.add(new Donuts("Donut Holes", "Mint", R.drawable.donutholes));
+        donutList.add(new Donuts("Yeast Holes", "Strawberry", R.drawable.food));
+        donutList.add(new Donuts("Yeast Holes", "Chocolate", R.drawable.food));
+        donutList.add(new Donuts("Yeast Holes", "Mint", R.drawable.food));
+        donutList.add(new Donuts("Cake Donuts", "Strawberry", R.drawable.food));
+        donutList.add(new Donuts("Cake Donuts", "Chocolate", R.drawable.food));
+        donutList.add(new Donuts("Cake Donuts", "Mint", R.drawable.food));
+
+
 
 //        ArrayAdapter<CharSequence> finalAdapter = adapter;
 ////        addDonut.setOnClickListener(new View.OnClickListener() {
@@ -104,12 +109,13 @@ public class donutsViewActivity extends AppCompatActivity implements DonutAdapte
     @Override
     public void onDonutClick(Donuts donut)
     {
-        addDonut(donut);
+        Donuts selectDonut = new Donuts(donut.donutFlavor, donut.donutType, donut.image);
     }
 
     private void addDonut(Donuts donut)
     {
-        mSelectedDonuts.add(donut);
+        officialDonutsList = new ArrayList<>();
+        officialDonutsList.add(donut);
     }
 
 
@@ -151,9 +157,9 @@ public class donutsViewActivity extends AppCompatActivity implements DonutAdapte
     public double displayTotalPrice()
     {
         double total =0;
-        for(int i =0; i<mSelectedDonuts.size(); i++)
+        for(int i =0; i<officialDonutsList.size(); i++)
         {
-            total+= mSelectedDonuts.get(i).donutPriceWithQuantity();
+            total+= officialDonutsList.get(i).donutPriceWithQuantity();
         }
 
         total = Double.parseDouble(String.format("%.2f", total));
