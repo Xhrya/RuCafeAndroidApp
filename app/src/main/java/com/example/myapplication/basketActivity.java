@@ -1,90 +1,95 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Text;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 public class basketActivity extends AppCompatActivity {
-    Intent intent = getIntent();
-    Button removeSelected;
     Button placeOrder;
     TextView subTotal;
     TextView tax;
     TextView total;
     ListView ordersList;
-    Order currentOrder = new Order();
-    double subTotalCost = 0.0;
+    ArrayAdapter arrayAdapterOrders;
+    public static Order currentOrder = new Order();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basketorders_view);
 
-        removeSelected = findViewById(R.id.removeItemButton);
+//        removeSelected = findViewById(R.id.removeItemButton);
         placeOrder = findViewById(R.id.orderButton);
         ordersList = findViewById(R.id.listOrders);
 
-        initialView();
 
-        removeSelected.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onRemove();
+        arrayAdapterOrders = new ArrayAdapter(basketActivity.this, R.layout.basket_item, R.id.orderedItemName, currentOrder.getOrderList()){
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent){
+                if(convertView == null){
+                    convertView = LayoutInflater.from(getContext()).inflate(R.layout.basket_item, parent, false);
+                }
+
+                View view = super.getView(position, convertView, parent);
+                Button removeSelected = convertView.findViewById(R.id.removeOrderItembutton);
+                removeSelected.setOnClickListener(v -> removeItem(position));
+
+                return view;
             }
-        });
+        };
+        ordersList.setAdapter(arrayAdapterOrders);
+        displayPrices();
+
 
         placeOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //seralize and export
-
                 Toast.makeText(basketActivity.this, "Your order has been placed!", Toast.LENGTH_SHORT).show();
             }
         });
 
     }
 
-    protected void initialView(){
-        //DESERALIZE HERE
+    protected void removeItem(int indexRemove){
+        currentOrder.getOrderList().remove(indexRemove);
+        displayPrices();
+        Toast.makeText(basketActivity.this, "Your item has been removed!", Toast.LENGTH_SHORT).show();
+        arrayAdapterOrders.notifyDataSetChanged();
 
-        //        Coffee C = new Coffee();
-//        currentOrder.addCoffee(C);
-
-        ArrayAdapter arrayAdapterOrders = new ArrayAdapter(basketActivity.this, android.R.layout.simple_list_item_1, currentOrder.getOrderList());
-        ordersList.setAdapter(arrayAdapterOrders);
-
-        subTotal = findViewById(R.id.subtotalText);
-        subTotal.setText("$");
-
-        tax = findViewById(R.id.taxText);
-        tax.setText("$");
-
-        total = findViewById(R.id.totalText);
-        total.setText("$");
     }
 
-    protected void onRemove(){
+    protected void displayPrices(){
+        Double displayInitialPrice = 0.0;
         subTotal = findViewById(R.id.subtotalText);
-        subTotal.setText("$");
+        ArrayList<MenuItem> temp = currentOrder.getOrderList();
+        for (MenuItem orderItem: temp) {
+            displayInitialPrice += orderItem.itemPrice();
+        }
+        subTotal.setText(String.format("$%.2f",(displayInitialPrice)));
 
         tax = findViewById(R.id.taxText);
-        tax.setText("$");
+        tax.setText(String.format("$%.2f",(displayInitialPrice*.06625)));
 
         total = findViewById(R.id.totalText);
-        total.setText("$");
-
-        Toast.makeText(basketActivity.this, "Your item has been removed!", Toast.LENGTH_SHORT).show();
+        total.setText(String.format("$%.2f",(displayInitialPrice*1.06625)));
     }
 
 }

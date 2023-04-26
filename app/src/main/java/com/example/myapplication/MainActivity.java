@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
 public class MainActivity extends AppCompatActivity {
 
     Button coffeeView;
@@ -24,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         donutsView = (Button) findViewById(R.id.orderDonutsButton);
         coffeeView = (Button) findViewById(R.id.orderCoffeeButton);
