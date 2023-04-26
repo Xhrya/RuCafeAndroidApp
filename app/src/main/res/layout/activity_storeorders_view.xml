@@ -22,18 +22,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginBottom="32dp"
         android:text="Subtotal:"
         android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/subtotalText" />
+        app:layout_constraintBottom_toBottomOf="@+id/textView11"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="13dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="12dp"
         android:text="Total:"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -49,14 +49,14 @@
         app:layout_constraintEnd_toEndOf="@+id/textView10" />
 
     <Button
-        android:id="@+id/removeSelectedItem"
+        android:id="@+id/SaveAndExport"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:text="Remove Selected Item"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
+        android:text="Save and Export"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/storeOrdersList" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/subtotalText"
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:text="       "
         android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/taxText"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView10"
         app:layout_constraintStart_toStartOf="@+id/taxText" />
 
     <TextView
@@ -81,7 +81,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="9dp"
-        android:layout_marginBottom="13dp"
+        android:layout_marginBottom="12dp"
         android:text="       "
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -89,16 +89,13 @@
 
     <ListView
         android:id="@+id/storeOrdersList"
-        android:layout_width="359dp"
+        android:layout_width="0dp"
         android:layout_height="353dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/removeSelectedItem"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="21dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.397"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/textView7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
