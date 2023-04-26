@@ -50,7 +50,7 @@ public class Order {
         orderList.add(a);
     }
 
-    public void clear()
+    public void clearList()
     {
         orderList.clear();
     }
