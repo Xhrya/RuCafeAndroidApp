@@ -27,10 +27,37 @@ public class Coffee extends MenuItem{
     }
 
     /**
-     * Return's the cofee's price
+     * Return's the coffee's price
      */
     @Override
     public double itemPrice(){
+        this.coffeePrice = 0.0;
+        if(cupSize.toString().equals("Short")){
+            this.coffeePrice+= 1.89;
+        }else if(cupSize.toString().equals("Tall")){
+            this.coffeePrice+= 2.29;
+        }else if(cupSize.toString().equals("Grande")){
+            this.coffeePrice+= 2.69;
+        }else if(cupSize.toString().equals("Venti")){
+            this.coffeePrice+= 3.09;
+        }
+
+        if(addIns.contains(AddIns.SWEETCREAM)){
+            this.coffeePrice += AddIns.SWEETCREAM.getPrice();
+        }
+        if(addIns.contains(AddIns.FRENCHVANILLA)){
+            this.coffeePrice += AddIns.FRENCHVANILLA.getPrice();
+        }
+        if(addIns.contains(AddIns.IRISHCREAM)){
+            this.coffeePrice += AddIns.IRISHCREAM.getPrice();
+        }
+        if(addIns.contains(AddIns.CARAMEL)){
+            this.coffeePrice += AddIns.CARAMEL.getPrice();
+        }
+        if(addIns.contains(AddIns.MOCHA)){
+            this.coffeePrice += AddIns.MOCHA.getPrice();
+        }
+
         return coffeePrice;
     }
 

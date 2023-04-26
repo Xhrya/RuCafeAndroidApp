@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import static com.example.myapplication.basketActivity.currentOrder;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -13,9 +15,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 
-public class coffeeViewActivity extends AppCompatActivity {
+public class coffeeViewActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     ArrayList addIns = new ArrayList();
     private int quantity = 1;
     RadioGroup sizeGroup;
@@ -82,58 +89,26 @@ public class coffeeViewActivity extends AppCompatActivity {
                     addIns.add(AddIns.MOCHA);
                 }
                 double price = (displayPrice()/quantity);
+                ArrayList<Coffee> coffeeOrder = new ArrayList();
                 for(int i=0; i<quantity; i++) {
                     Coffee newCoffee = new Coffee(size, addIns, price);
+                    coffeeOrder.add(newCoffee);
                 }
 
-                //SERALIZE RIGHT HERE
-
+                for(int i=0; i<quantity; i++) {
+                    Coffee newCoffee = new Coffee(size, addIns, price);
+                    currentOrder.addCoffee(newCoffee);
+                }
 
                 Toast.makeText(coffeeViewActivity.this, "Your order has been placed!", Toast.LENGTH_SHORT).show();
             }
         });
 
-
-
-
-
-
-
-
-//        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() { //event handler below
-//            @Override
-//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-//                quantity = Integer.parseInt(spinner.getSelectedItem().toString());
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> adapterView) {
-//
-//            }
-//        });
-
-
-        //-------------------------------------------------------------
-//        Spinner quantitySelection = findViewById(R.id.spinner);
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.quantities, android.R.layout.simple_spinner_item);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        quantitySelection.setAdapter(adapter);
-//        quantitySelection.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
-//        MyAdapter myAdapter = new MyAdapter(this, (getResources().getStringArray(R.array.quantities)));
-
-
-//        @Override
-//        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-//            String text = adapterView.getItemAtPosition(i).toString();
-//            Toast.makeText(adapterView.getContext(), text, Toast.LENGTH_SHORT).show();
-//        }
-//
-//        @Override
-//        public void onNothingSelected(AdapterView<?> adapterView) {
-//
-//        }
-
-        //----------------------------------------------------------------
+        Spinner quantitySelection = findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.quantities, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        quantitySelection.setAdapter(adapter);
+        quantitySelection.setOnItemSelectedListener(this);
 
         //THESE HELP KEEP THE RUNNING TOTAL IN CHECK
         sizeGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -295,6 +270,16 @@ public class coffeeViewActivity extends AppCompatActivity {
         temp.setText("$" + String.format("%.2f",(price * quantity)));
 
         return price;
+    }
+
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        String text = adapterView.getItemAtPosition(i).toString();
+        quantity = Integer.parseInt(text);
+        displayPrice();
+    }
+
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 
 
