@@ -8,22 +8,48 @@ import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class Donuts extends MenuItem implements Serializable {
+public class Donuts extends MenuItem   {
 
 
     String donutType = "";
     String donutFlavor = "";
-    double quantity =0;
+    int quantity;
+    String id;
 
     int image;
 
     private boolean isChecked = false;
 
-    public Donuts(String t, String df, int i)
+    public Donuts(String id, String t, String df, int i)
     {
+        this.id = id;
         this.donutType=t;
         this.donutFlavor=df;
         this.image = i;
+        this.quantity=0;
+
+    }
+
+
+    public Donuts(int imageResourceId, String type, String flavor) {
+        this.image = imageResourceId;
+        this.donutType = type;
+        this.donutFlavor = flavor;
+    }
+
+    public int getQuantity()
+    {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity)
+    {
+        this.quantity = quantity;
+    }
+
+    public String getId()
+    {
+        return id;
     }
 
     public boolean isChecked()
@@ -43,7 +69,7 @@ public class Donuts extends MenuItem implements Serializable {
      * @param donutType the type of the donut
      * @param quantity is the number of donuts
      */
-    public Donuts(String donutType, String donutFlavor, double quantity){
+    public Donuts(String donutType, String donutFlavor, int quantity){
         this.donutType = donutType;
         this.donutFlavor = donutFlavor;
         this.quantity = quantity;
@@ -119,4 +145,7 @@ public class Donuts extends MenuItem implements Serializable {
     }
 
 
+    public void addQuantity(int q) {
+        quantity = quantity+ quantity;
+    }
 }

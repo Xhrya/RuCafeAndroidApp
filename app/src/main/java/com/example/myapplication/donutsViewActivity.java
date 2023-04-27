@@ -1,13 +1,13 @@
 package com.example.myapplication;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import static com.example.myapplication.basketActivity.currentOrder;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Display;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,29 +21,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class donutsViewActivity extends AppCompatActivity implements DonutAdapter.OnDonutClickListener {
+public class donutsViewActivity extends AppCompatActivity {
 
     Intent intent = getIntent();
-    private int quanitity;
-    ArrayList<Donuts> officialDonutsList;
 
-
-    Button orderDonut;
-    Spinner quantitySelection;
-    RecyclerView recyclerView;
-
-
-    TextView particularDonutPrice;
-    Button addDonut;
     TextView subtotal;
 
-    DonutAdapter adapter;
-    ArrayList<Donuts> donutList = new ArrayList<>();
+    DonutAdapter adapterDonut;
 
+    Button addDonutButton;
+    Button addToBasketButton;
+
+    private List<Donuts> donutList;
+    private List<Order> currentOrderList;
 
     String flavors[], type[];
-    int images[] = {R.drawable.cakedonuts, R.drawable.cakedonuts,R.drawable.cakedonuts, R.drawable.donutholes, R.drawable.donutholes, R.drawable.donutholes, R.drawable.food,  R.drawable.food,  R.drawable.food};
-
+    int images[] = {R.drawable.cakedonuts, R.drawable.cakedonuts, R.drawable.cakedonuts, R.drawable.donutholes, R.drawable.donutholes, R.drawable.donutholes, R.drawable.food, R.drawable.food, R.drawable.food};
 
 
     @Override
@@ -62,15 +55,15 @@ public class donutsViewActivity extends AppCompatActivity implements DonutAdapte
 //        }
 
 
+//
+//        Spinner quantitySelection = findViewById(R.id.quantitySelection);
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.quantities, android.R.layout.simple_spinner_item);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        quantitySelection.setAdapter(adapter);
+//        quantitySelection.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
 
-        Spinner quantitySelection = findViewById(R.id.quantitySelection);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.quantities, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        quantitySelection.setAdapter(adapter);
-        quantitySelection.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
 
-
-
+        donutList = new ArrayList<>();
         donutList.add(new Donuts("Donut Holes", "Strawberry", R.drawable.donutholes));
         donutList.add(new Donuts("Donut Holes", "Mint", R.drawable.donutholes));
         donutList.add(new Donuts("Yeast Holes", "Strawberry", R.drawable.food));
@@ -80,113 +73,89 @@ public class donutsViewActivity extends AppCompatActivity implements DonutAdapte
         donutList.add(new Donuts("Cake Donuts", "Chocolate", R.drawable.food));
         donutList.add(new Donuts("Cake Donuts", "Mint", R.drawable.food));
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        adapterDonut = new DonutAdapter(donutList, this);
+        RecyclerView recyclerView = findViewById(R.id.donutRecyclerView);
         //adapter = new DonutAdapterA(donutList, this);
-        adapter = new DonutAdapter(donutList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapterDonut);
+
+        addDonutButton = findViewById(R.id.addDonutButton);
+        addToBasketButton = findViewById(R.id.addToBasketButton);
+
+        //Button addDonut = findViewById(R.id.addDonut);
+
+        currentOrderList = new ArrayList<>();
 
 
+        addDonutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: Add code to handle the add button click event
+                displayTotalPrice();
+                Toast.makeText(donutsViewActivity.this, "Added to donut list", Toast.LENGTH_SHORT).show();
 
-//        ArrayAdapter<CharSequence> finalAdapter = adapter;
-////        addDonut.setOnClickListener(new View.OnClickListener() {
-////            @Override
-////            public void onClick(View view) {
-////                if(finalAdapter.getSelected() != null)
-////                {
-////                    showToast(finalAdapter.getSelected().getName());
-////                }
-////                else {
-////                    showToast("No Selected");
-////                }
-////            }
-////        });
+            }
+        });
+
+        addToBasketButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for(int i =0; i< donutList.size(); i++)
+                {
+                    Donuts donut = donutList.get(i);
+                    int quantity = donut.getQuantity();
+
+                    Donuts addThis = new Donuts(donut.getType(), donut.donutFlavor, quantity);
+                    if(quantity >0)
+                    {
+                        //Order order = new Order(donut, quantity);
+                        currentOrder.addDonut(addThis);
+                    }
+                }
+
+                Toast.makeText(donutsViewActivity.this, "Added to Order", Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
 
     }
 
-    @Override
-    public void onDonutClick(Donuts donut)
-    {
-        Donuts selectDonut = new Donuts(donut.donutFlavor, donut.donutType, donut.image);
-    }
 
-    private void addDonut(Donuts donut)
-    {
-        officialDonutsList = new ArrayList<>();
-        officialDonutsList.add(donut);
-    }
-
-
-
-    private void showToast(String msg)
-    {
-        Toast.makeText(this,msg, Toast.LENGTH_LONG).show();
-    }
-
-
-
-//
-//
-//    @Override
-//    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-//        String text = adapterView.getItemAtPosition(i).toString();
-//        Toast.makeText(adapterView.getContext(), text, Toast.LENGTH_SHORT).show();
-//    }
-//
-//    @Override
-//    public void onNothingSelected(AdapterView<?> adapterView) {
-//
-//    }
-
-
-//
-//    public void onAddDonutClick()
-//    {
-//        quanitity = quantitySelection.getId();
-//        onDisplayPrice();
-//
-//
-//        double total = displayTotalPrice();
-//        subtotal.setText("$" + String.format("%.2f",total));
-//
-//
-//    }
-
-    public double displayTotalPrice()
-    {
-        double total =0;
-        for(int i =0; i<officialDonutsList.size(); i++)
-        {
-            total+= officialDonutsList.get(i).donutPriceWithQuantity();
+    public void displayTotalPrice() {
+        double total = 0;
+        for (int i = 0; i < currentOrderList.size(); i++) {
+            total += donutList.get(i).donutPriceWithQuantity();
         }
 
         total = Double.parseDouble(String.format("%.2f", total));
-        return total;
+
+
+        subtotal = findViewById(R.id.subtotal);
+        subtotal.setText("$" + total);
     }
 
+    public void onAddToBasket(List<Order> currentOrderList) {
+        {
+//        Intent intent = new Intent(this, basketActivity.class);
+//        intent.putExtra("orderList", orderList);
+//        startActivity(intent);
+        }
 
 
-    public void onAddToBasketClick()
-    {
-       // donutsPriceTotal.setText("$" + displayTotalPrice());
-
-    }
-
-
-
-    public void onDisplayPrice()
-    {
-        //these donuts Price
-        double price = 0;
-
-
-        particularDonutPrice = findViewById(R.id.donutPrice);
-        particularDonutPrice.setText("$" + String.format("%.2f",(price)));
-
-
-        particularDonutPrice.setText("$" + String.format("%.2f",(price * quantitySelection.getId())));
-
-
-
+//    public void onDisplayPrice()
+//    {
+//        //these donuts Price
+//        double price=0;
+//
+//
+//        particularDonutPrice = findViewById(R.id.donutPrice);
+//        particularDonutPrice.setText("$" + String.format("%.2f",(price)));
+//
+//        particularDonutPrice.setText("$" + String.format("%.2f",(price * quantitySelection.getId())));
+//
+//
+//
+//    }
     }
 }

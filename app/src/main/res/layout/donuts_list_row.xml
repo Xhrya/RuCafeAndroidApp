@@ -10,7 +10,7 @@
 
 
     <ImageView
-        android:id="@+id/images"
+        android:id="@+id/donutImageView"
         android:layout_width="95dp"
         android:layout_height="107dp"
         android:layout_marginStart="32dp"
@@ -20,7 +20,7 @@
 
 
     <TextView
-        android:id="@+id/types"
+        android:id="@+id/donutTypeTextView"
         android:layout_width="83dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="150dp"
@@ -28,18 +28,18 @@
         android:text="TextViewN" />
 
 <!--    <Button-->
-<!--        android:id="@+id/add"-->
+<!--        android:id="@+id/addButton"-->
 <!--        android:layout_width="47dp"-->
 <!--        android:layout_height="32dp"-->
 <!--        android:layout_marginStart="150dp"-->
 <!--        android:layout_marginTop="89dp"-->
 <!--        android:layout_marginEnd="183dp"-->
 <!--        android:layout_marginBottom="54dp"-->
-<!--        android:onClick="onAddDonutClick"-->
+<!--        android:onClick="onAddButton"-->
 <!--        android:text="+" />-->
 
 
-<!--    <Button-->
+    <!--    <Button-->
 <!--        android:id="@+id/remove"-->
 <!--        android:layout_width="47dp"-->
 <!--        android:layout_height="32dp"-->
@@ -50,15 +50,33 @@
 
 <!--        android:text="-" />-->
 
+<!--    <EditText-->
+<!--        android:id="@+id/quantity_edit_text"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignBottom="@+id/flavors"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_marginStart="222dp"-->
+<!--        android:layout_marginTop="-38dp"-->
+<!--        android:layout_marginBottom="-67dp" />-->
+
     <TextView
-        android:id="@+id/flavors"
+        android:id="@+id/donutFlavorTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginStart="150dp"
         android:layout_marginTop="45dp"
         android:text="TypeN"
-        app:layout_constraintBottom_toBottomOf="@+id/types" />
+        app:layout_constraintBottom_toBottomOf="@+id/donutTypeTextView" />
+
+    <Spinner
+        android:id="@+id/donutQuantitySpinner"
+        android:layout_width="100dp"
+        android:layout_height="43dp"
+
+        android:layout_below="@+id/donutFlavorTextView"
+        android:layout_marginStart="151dp" />
 
 
 </RelativeLayout>

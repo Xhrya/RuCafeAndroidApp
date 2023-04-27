@@ -32,6 +32,7 @@ public class Order {
     }
 
 
+
     /**
      * Arraylist of orders is returned
      */
@@ -193,7 +194,6 @@ public class Order {
     public double getTotalPrice(){
         return this.orderPrice;
     }
-
 
 
 
