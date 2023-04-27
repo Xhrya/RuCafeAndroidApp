@@ -33,7 +33,7 @@ public class donutsViewActivity extends AppCompatActivity {
     Button addToBasketButton;
 
     private List<Donuts> donutList;
-    private List<Order> currentOrderList;
+    private List<Donuts> currentOrderList;
 
     String flavors[], type[];
     int images[] = {R.drawable.cakedonuts, R.drawable.cakedonuts, R.drawable.cakedonuts, R.drawable.donutholes, R.drawable.donutholes, R.drawable.donutholes, R.drawable.food, R.drawable.food, R.drawable.food};
@@ -66,9 +66,10 @@ public class donutsViewActivity extends AppCompatActivity {
         donutList = new ArrayList<>();
         donutList.add(new Donuts("Donut Holes", "Strawberry", R.drawable.donutholes));
         donutList.add(new Donuts("Donut Holes", "Mint", R.drawable.donutholes));
-        donutList.add(new Donuts("Yeast Holes", "Strawberry", R.drawable.food));
-        donutList.add(new Donuts("Yeast Holes", "Chocolate", R.drawable.food));
-        donutList.add(new Donuts("Yeast Holes", "Mint", R.drawable.food));
+        donutList.add(new Donuts("Donut Holes", "Chocolate", R.drawable.donutholes));
+        donutList.add(new Donuts("Yeast Donuts", "Strawberry", R.drawable.food));
+        donutList.add(new Donuts("Yeast Donuts", "Chocolate", R.drawable.food));
+        donutList.add(new Donuts("Yeast Donuts", "Mint", R.drawable.food));
         donutList.add(new Donuts("Cake Donuts", "Strawberry", R.drawable.food));
         donutList.add(new Donuts("Cake Donuts", "Chocolate", R.drawable.food));
         donutList.add(new Donuts("Cake Donuts", "Mint", R.drawable.food));
@@ -90,8 +91,12 @@ public class donutsViewActivity extends AppCompatActivity {
         addDonutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: Add code to handle the add button click event
+
                 displayTotalPrice();
+              //get type, flavor, and quantity
+
+                Donuts newDonut = new Donuts("Yeast", "Strawberry", 4);
+                currentOrderList.add(newDonut);
                 Toast.makeText(donutsViewActivity.this, "Added to donut list", Toast.LENGTH_SHORT).show();
 
             }
@@ -100,7 +105,7 @@ public class donutsViewActivity extends AppCompatActivity {
         addToBasketButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for(int i =0; i< donutList.size(); i++)
+                for(int i =0; i< currentOrderList.size(); i++)
                 {
                     Donuts donut = donutList.get(i);
                     int quantity = donut.getQuantity();
