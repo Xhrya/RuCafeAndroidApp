@@ -6,6 +6,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,6 +25,7 @@ public class storeOrderActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_storeorders_view);
 
         subtotalText = findViewById(R.id.subtotalText);
         taxText = findViewById(R.id.taxText);
@@ -31,7 +33,7 @@ public class storeOrderActivity extends AppCompatActivity {
         saveExportButton = findViewById(R.id.SaveAndExport);
 
         storeListOrders = findViewById(R.id.storeOrdersList);
-        ArrayAdapter storeOrderAdapter = new ArrayAdapter(storeOrderActivity.this, android.R.layout.simple_list_item_1, currentStoreOrders.toArray());
+        ArrayAdapter storeOrderAdapter = new ArrayAdapter(storeOrderActivity.this, android.R.layout.simple_list_item_1, currentStoreOrders.stream().toArray());
         storeListOrders.setAdapter(storeOrderAdapter);
         displayPrices();
     }

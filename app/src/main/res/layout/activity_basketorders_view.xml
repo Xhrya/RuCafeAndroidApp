@@ -22,18 +22,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginBottom="32dp"
         android:text="Subtotal:"
         android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/subtotalText" />
+        app:layout_constraintBottom_toBottomOf="@+id/textView11"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="13dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="12dp"
         android:text="Total:"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -49,35 +49,25 @@
         app:layout_constraintEnd_toEndOf="@+id/textView10" />
 
     <Button
-        android:id="@+id/removeItemButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="67dp"
-        android:text="Remove Selected Item"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/orderButton"
+        android:layout_width="186dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="34dp"
+        android:text="Place Order"
+        app:layout_constraintBottom_toBottomOf="@+id/totalText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listOrders" />
-
-    <Button
-        android:id="@+id/orderButton"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="14dp"
-        android:text="Place Order"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/removeItemButton"
-        app:layout_constraintStart_toStartOf="@+id/removeItemButton"
-        app:layout_constraintTop_toBottomOf="@+id/removeItemButton" />
 
     <TextView
         android:id="@+id/subtotalText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
         android:text="       "
         android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/taxText"
+        app:layout_constraintBottom_toBottomOf="@+id/textView10"
         app:layout_constraintStart_toStartOf="@+id/taxText" />
 
     <TextView
@@ -94,7 +84,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="9dp"
-        android:layout_marginBottom="13dp"
+        android:layout_marginBottom="12dp"
         android:text="       "
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -105,12 +95,12 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/removeItemButton"
+        android:layout_marginBottom="3dp"
+        app:layout_constraintBottom_toTopOf="@+id/subtotalText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

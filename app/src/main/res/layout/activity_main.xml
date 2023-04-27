@@ -8,68 +8,72 @@
     tools:context=".MainActivity">
 
 
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="43dp"
+        android:layout_marginBottom="47dp"
         android:text="Welcome to RUCafe!"
         android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/orderCoffeeButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.063" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/orderCoffeeButton"
-        android:layout_width="175dp"
-        android:layout_height="72dp"
-        android:layout_marginBottom="13dp"
+        android:layout_width="183dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="#6C5B7B"
-        android:text="Order Coffee"
         android:onClick="ordersCoffee"
+        android:text="Order Coffee"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/orderDonutsButton"
-        app:layout_constraintStart_toStartOf="@+id/orderDonutsButton" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/myOrderButton"
-        android:layout_width="172dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="52dp"
+        android:layout_width="171dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="36dp"
+        android:onClick="basketOrders"
         android:text="My Order"
         android:textSize="20sp"
-        android:onClick="basketOrders"
-        app:layout_constraintStart_toStartOf="@+id/orderDonutsButton"
+        app:layout_constraintBottom_toTopOf="@+id/storeOrdersButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/orderDonutsButton" />
 
     <Button
         android:id="@+id/storeOrdersButton"
-        android:layout_width="165dp"
-        android:layout_height="71dp"
+        android:layout_width="170dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="180dp"
+        android:onClick="storeOrdersClick"
         android:text="Store Orders"
         android:textSize="20sp"
-        android:onClick="storeOrdersClick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myOrderButton" />
 
     <Button
         android:id="@+id/orderDonutsButton"
-        android:layout_width="173dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="247dp"
-        android:text="Order Donuts"
+        android:layout_width="181dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="31dp"
         android:backgroundTint="#6C5B7B"
         android:onClick="ordersDonut"
+        android:text="Order Donuts"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/myOrderButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/orderCoffeeButton" />
     />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
