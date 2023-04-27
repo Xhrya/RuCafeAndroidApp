@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.media.Image;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DonutAdapter extends RecyclerView.Adapter<DonutAdapter.DonutViewHolder> {
-    private List<Donuts> donutList;
+    private final List<Donuts> donutList;
     private Context context;
 
     public DonutAdapter(List<Donuts> donutList, Context context) {
@@ -32,13 +33,12 @@ public class DonutAdapter extends RecyclerView.Adapter<DonutAdapter.DonutViewHol
 
     public static class DonutViewHolder extends RecyclerView.ViewHolder {
         public ImageView donutImageView;
-        public TextView donutTypeTextView;
-        public TextView donutFlavorTextView;
+        public TextView donutTypeTextView, donutFlavorTextView;
         public Spinner donutQuantitySpinner;
 
         public DonutViewHolder(View itemView) {
             super(itemView);
-            donutImageView = itemView.findViewById(R.id.donutImageView);
+            donutImageView = (ImageView) itemView.findViewById(R.id.donutImageView);
             donutTypeTextView = itemView.findViewById(R.id.donutTypeTextView);
             donutFlavorTextView = itemView.findViewById(R.id.donutFlavorTextView);
             donutQuantitySpinner = itemView.findViewById(R.id.donutQuantitySpinner);
@@ -48,6 +48,7 @@ public class DonutAdapter extends RecyclerView.Adapter<DonutAdapter.DonutViewHol
     @Override
     public DonutViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new DonutViewHolder(LayoutInflater.from(context).inflate(R.layout.donuts_list_row, parent, false));
+
     }
 
     @Override

@@ -64,15 +64,21 @@ public class donutsViewActivity extends AppCompatActivity {
 
 
         donutList = new ArrayList<>();
-        donutList.add(new Donuts("Donut Holes", "Strawberry", R.drawable.donutholes));
-        donutList.add(new Donuts("Donut Holes", "Mint", R.drawable.donutholes));
-        donutList.add(new Donuts("Donut Holes", "Chocolate", R.drawable.donutholes));
-        donutList.add(new Donuts("Yeast Donuts", "Strawberry", R.drawable.food));
-        donutList.add(new Donuts("Yeast Donuts", "Chocolate", R.drawable.food));
-        donutList.add(new Donuts("Yeast Donuts", "Mint", R.drawable.food));
-        donutList.add(new Donuts("Cake Donuts", "Strawberry", R.drawable.food));
-        donutList.add(new Donuts("Cake Donuts", "Chocolate", R.drawable.food));
-        donutList.add(new Donuts("Cake Donuts", "Mint", R.drawable.food));
+        donutList.add(new Donuts(R.drawable.cakedonuts, "Donut Holes", "Mint"));
+        donutList.add(new Donuts(R.drawable.cakedonuts, "Donut Holes", "Chocolate"));
+        donutList.add(new Donuts(R.drawable.cakedonuts, "Donut Holes", "Strawberry"));
+
+        donutList.add(new Donuts(R.drawable.donutholes, "Donut Holes", "Mint"));
+        donutList.add(new Donuts(R.drawable.donutholes, "Donut Holes", "Chocolate"));
+        donutList.add(new Donuts(R.drawable.donutholes, "Donut Holes", "Strawberry"));
+
+        donutList.add(new Donuts(R.drawable.food, "Yeast Donuts", "Mint"));
+        donutList.add(new Donuts(R.drawable.food, "Yeast Donuts", "Strawberry"));
+        donutList.add(new Donuts(R.drawable.food, "Yeast Donuts", "Chocolate"));
+        donutList.add(new Donuts(R.drawable.food, "Yeast Donuts", "Pumpkin"));
+        donutList.add(new Donuts(R.drawable.food, "Yeast Donuts", "Walnuts"));
+        donutList.add(new Donuts(R.drawable.food, "Yeast Donuts", "Almonds"));
+
 
         adapterDonut = new DonutAdapter(donutList, this);
         RecyclerView recyclerView = findViewById(R.id.donutRecyclerView);

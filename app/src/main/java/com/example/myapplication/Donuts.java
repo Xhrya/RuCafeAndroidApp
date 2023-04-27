@@ -4,6 +4,8 @@
  */
 package com.example.myapplication;
 
+import android.media.Image;
+
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -31,7 +33,7 @@ public class Donuts extends MenuItem   {
     }
 
 
-    public Donuts(int imageResourceId, String type, String flavor) {
+    public Donuts(int imageResourceId , String type, String flavor) {
         this.image = imageResourceId;
         this.donutType = type;
         this.donutFlavor = flavor;
@@ -51,6 +53,8 @@ public class Donuts extends MenuItem   {
     {
         return id;
     }
+
+
 
     public boolean isChecked()
     {
